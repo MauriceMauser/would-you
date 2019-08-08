@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { handleAnswerQuestion } from '../actions/questions';
-import { Redirect } from 'react-router-dom';
-
 
 const Option = ({ question, option, handleClick }) => (
   <button 
@@ -22,14 +20,11 @@ const Summary = ({ question, option, givenAnswer }) => (
 );
 
 class QuestionPage extends Component {
-  state = {
-    toHome: false
-  }
 
   handleClick = async (e, question, option) => {
     e.preventDefault();
     await this.props.dispatch(handleAnswerQuestion({ question, answer: option }));
-    this.setState({ toHome: true }); 
+    this.forceUpdate(); 
   }
 
   render() {
@@ -37,8 +32,7 @@ class QuestionPage extends Component {
     const question = questions[id];
     const user = users[authedUser];
     const givenAnswer = user.answers[id];
-    return (this.state.toHome ? <Redirect to="/" />
-      : (question ?
+    return (question ?
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', paddingTop: 30 }}>
               <h3>Would you Rather?</h3>
               <img
@@ -76,7 +70,6 @@ class QuestionPage extends Component {
                       </div>)}
               </div>
             </div> : <div><br /><div>404 - Does not exist.</div></div>)
-    );
   }
 }
 
