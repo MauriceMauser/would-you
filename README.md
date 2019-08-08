@@ -1,4 +1,4 @@
-# Would Rather
+# "Would You Rather?"
 #### Udacity React Developer Nanodegree
 
 ## To get up and running...
