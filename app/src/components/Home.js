@@ -55,7 +55,9 @@ class Home extends Component {
 
 function mapStateToProps({ questions, users, authedUser }) {
 	return {
-		questions: Object.keys(questions).map(qid => questions[qid]),
+		questions: Object.keys(questions)
+				.sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+				.map(qid => questions[qid]),
 		user: users[authedUser]
 	}
 }
