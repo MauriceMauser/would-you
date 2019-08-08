@@ -41,7 +41,7 @@ class QuestionPage extends Component {
                 className="avatar"
               />
               <h6>You would rather:</h6>
-              <h4 style={{ color: 'lightgreen' }}>{givenAnswer ? questions[givenAnswer].text : ''}</h4>
+              <h4 style={{ color: 'lightgreen' }}>{givenAnswer ? question[givenAnswer].text : ''}</h4>
               <div>
                 {!!givenAnswer 
                   ? (<div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
