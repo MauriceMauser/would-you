@@ -3,6 +3,11 @@
 
 ## To get up and running...
 
+Navigate into the app directory:
+```
+cd app
+```
+
 Install all dependencies via:
 
 ```
