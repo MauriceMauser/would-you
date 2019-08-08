@@ -13,9 +13,9 @@ const Option = ({ question, option, handleClick }) => (
   </button>
 );
 
-const Summary = ({ question, option }) => (
+const Summary = ({ question, option, givenAnswer }) => (
   <div style={{ display: 'flex', flex: 1, flexDirection: 'column', alignItems: 'center' }}>
-    <h6>{question[option].text}</h6>
+    <h6 style={givenAnswer === option ? { color: 'lightgreen' } : { color: 'lightgray' }}>{question[option].text}</h6>
     <div><p>{`${question[option].votes.length} votes`}</p></div>
     <div><p>{`${(question[option].votes.length / (question['optionOne'].votes.length + question['optionTwo'].votes.length)).toFixed(2)}%`}</p></div>
   </div>
@@ -46,17 +46,20 @@ class QuestionPage extends Component {
                 alt={`Avatar of ${user.name}`}
                 className="avatar"
               />
-              <h4>{givenAnswer ? givenAnswer : ''}</h4>
+              <h6>You would rather:</h6>
+              <h4 style={{ color: 'lightgreen' }}>{givenAnswer ? questions[givenAnswer].text : ''}</h4>
               <div>
                 {!!givenAnswer 
                   ? (<div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
                       <Summary 
                         question={question} 
                         option="optionOne"
+                        givenAnswer={givenAnswer}
                       />
                       <Summary 
                         question={question} 
                         option="optionTwo"
+                        givenAnswer={givenAnswer}
                       />
                     </div>)
                   : (<div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
